@@ -19,6 +19,7 @@ MonoBehaviour:
     cameraFocusModeSetting: 2
     cameraDeviceModeSetting: -3
     maxSimultaneousImageTargets: 50
+    previousVirtualSceneScaleFactor: 1
     virtualSceneScaleFactor: 1
     modelTargetRecoWhileExtendedTracked: 1
     shareRecordingsInITunes: 0
@@ -27,10 +28,7 @@ MonoBehaviour:
     eulaAcceptedVersions: '{"Values":["10.11"]}'
   database:
     disableModelExtraction: 0
-  shaders:
-    depthMaskShader: {fileID: 4800000, guid: 1ce7eb78425fb1540838bc9d5d95857a, type: 3}
-    outlineShader: {fileID: 4800000, guid: c1ded68d068051d4f92650fcddaae5c7, type: 3}
-    unlitTransparentShader: {fileID: 10750, guid: 0000000000000000f000000000000000, type: 0}
+  shaders: {depthMaskShader: {fileID: 4800000, guid: 1ce7eb78425fb1540838bc9d5d95857a, type: 3}, outlineShader: {fileID: 4800000, guid: c1ded68d068051d4f92650fcddaae5c7, type: 3}, unlitTransparentShader: {fileID: 10750, guid: 0000000000000000f000000000000000, type: 0}}
   videoBackground:
     numDivisions: 2
     videoBackgroundShader: {fileID: 4800000, guid: f40623b353e2f1943b1b3ba42975db7a, type: 3}
@@ -41,10 +39,13 @@ MonoBehaviour:
     arcoreRequirement: 1
     autoImportArcore: 1
     thirdPartyARCoreClientDetected: 0
+    <UseThirdPartySeethroughEyewear>k__BackingField: 0
   playmode:
-    mSequencePath: 
-    playModeType: 0
+    mSequencePath: "/home/iohan-sardinha/Downloads/Tukoh Taka - Official FIFA Fan
+      Festival\u2122 Anthem - Nicki Minaj, Maluma, & Myriam Fares (FIFA Sound).mp4"
+    playModeType: 2
   webcam:
+    mDeviceName: 
     renderTextureLayer: 30
   packageInformation:
     ARFoundationVersion: 
