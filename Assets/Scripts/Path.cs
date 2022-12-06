@@ -6,7 +6,7 @@ using UnityEditor;
 
 public class Path : MonoBehaviour
 {
-    public enum PATHS {NONE, START , FORWARD, TURN, BRIDGE};
+    public enum PATHS {NONE, START , FORWARD, TURN, BRIDGE, END};
 
     public PATHS path;
 
@@ -34,7 +34,8 @@ public class Path : MonoBehaviour
 
     void OnValidate(){
         switch(path){
-            case PATHS.START: 
+            case PATHS.START:
+            case PATHS.END: 
                 setPath("Assets/kenney_natureKit_2.1/Models/OBJ format/ground_pathEndClosed.obj");
                 break;
             case PATHS.FORWARD:

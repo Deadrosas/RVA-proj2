@@ -1,23 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class playerMovement : MonoBehaviour
 {
     bool started = false;
     public float SPEED = 100f;
-    float ROTATION_SPEED = 0.9f;
+    public float ROTATION_SPEED = 0.9f;
     bool isRotating = false;
     float roationDirection;
 
-    public Vector3 finalRotation;
+    Vector3 finalRotation;
 
     Queue<Vector3> finalPositions = new Queue<Vector3>();
 
-    public GameObject start;
+    GameObject start;
+
+    Animator animator;
+
+    float startHeight;
+
+    GameObject bloom;
+
+    int score = 0;
+
+    HashSet<GameObject> collectables = new HashSet<GameObject>();
 
     void Start(){
+        startHeight = transform.position.y;
+        animator = GetComponent<Animator>();
         finalRotation = transform.forward;
+
+        bloom = PrefabUtility.LoadPrefabContents("Assets/Prefab/Bloom.prefab");
     }
 
     // Update is called once per frame
@@ -33,16 +48,21 @@ public class playerMovement : MonoBehaviour
             transform.position = new Vector3(start.transform.position.x,transform.position.y, start.transform.position.z);
             transform.rotation = start.transform.rotation;
             finalRotation = transform.forward;
+            finalPositions.Clear();
+            score = 0;
+            GetComponent<SphereCollider>().enabled = false;
         }
 
         if(finalPositions.Count > 0){
             if(started && Vector3.Distance(transform.position, finalPositions.Peek()) > 0.001f){
+                animator.SetBool("walking", true);
                 transform.position = Vector3.MoveTowards(transform.position, finalPositions.Peek(), SPEED*Time.deltaTime);
             }
             else{
                 finalPositions.Dequeue();
             } 
-        }
+        }else
+            animator.SetBool("walking", false);
 
         
         if(started && Vector3.Distance(transform.forward, finalRotation) > 0.001f){
@@ -53,14 +73,13 @@ public class playerMovement : MonoBehaviour
 
     void MoveStart(GameObject path){ 
         Vector3 finalPosition = path.gameObject.transform.position - transform.forward/2;
-        finalPosition.y = path.transform.position.y + transform.lossyScale.y/2;
+        finalPosition.y = startHeight;
         finalPositions.Enqueue(finalPosition);
         drawCircle(finalPosition,Color.red);
     }
 
     void MoveForward(GameObject path){
         Vector3 finalPosition;
-        Debug.Log(Vector3.Angle(path.transform.forward, transform.forward));
         if(Vector3.Angle(path.transform.forward, transform.forward) > 45 && Vector3.Angle(path.transform.forward, transform.forward) < 135){
             Debug.Log("WRONG CONNECTION IN FORWARD");
             return;
@@ -69,35 +88,31 @@ public class playerMovement : MonoBehaviour
             finalPosition = path.gameObject.transform.position - path.gameObject.transform.forward/2;
         else
             finalPosition = path.gameObject.transform.position + path.gameObject.transform.forward/2;
-        finalPosition.y = path.transform.position.y + transform.lossyScale.y/2;
+        finalPosition.y = startHeight;
         finalPositions.Enqueue(finalPosition);
         drawCircle(finalPosition,Color.red);
     }
 
     void MoveTurn(GameObject path){
         Vector3 finalPosition;
-        Debug.Log(Vector3.Angle(path.transform.forward, transform.forward));
+        Vector3 middlePosition = new Vector3(path.transform.position.x, transform.position.y, path.transform.position.z) + (path.transform.right - path.transform.forward)/5;
         float angle = Vector3.Angle(path.transform.forward, transform.forward);
         if(angle > 180-45 && angle < 180+45){
-
-            finalPositions.Enqueue(new Vector3(path.transform.position.x, transform.position.y, path.transform.position.z));
-
             finalPosition = path.gameObject.transform.position + path.transform.right/2;
-            finalPosition.y = path.transform.position.y + transform.lossyScale.y/2;
+            finalPosition.y = startHeight;
             finalRotation = -path.transform.right;
         }else if(angle > 90-45 && angle < 90+45){
-
-            finalPositions.Enqueue(new Vector3(path.transform.position.x, transform.position.y, path.transform.position.z));
-
             finalPosition = path.gameObject.transform.position - path.transform.forward/2;
-            finalPosition.y = path.transform.position.y + transform.lossyScale.y/2;
+            finalPosition.y = startHeight;
             finalRotation = path.transform.forward;
         }
         else{
             Debug.Log("WRONG CONNECTION IN TURN");
             return;
         }
+        finalPositions.Enqueue(middlePosition);
         finalPositions.Enqueue(finalPosition);
+        drawCircle(middlePosition,Color.red);
         drawCircle(finalPosition,Color.red);
     }
 
@@ -109,17 +124,17 @@ public class playerMovement : MonoBehaviour
             return;
         }
         if(Vector3.Angle(path.transform.forward, transform.forward) < 45){
-            firstPosition = path.gameObject.transform.position - path.gameObject.transform.right/6;
-            secondPostion = path.gameObject.transform.position + path.gameObject.transform.right/6;
+            firstPosition = path.gameObject.transform.position - path.gameObject.transform.right/3;
+            secondPostion = path.gameObject.transform.position + path.gameObject.transform.right/3;
             finalPosition = path.gameObject.transform.position + path.gameObject.transform.right/2;
         }
         else{
-            firstPosition = path.gameObject.transform.position + path.gameObject.transform.right/6;
-            secondPostion = path.gameObject.transform.position - path.gameObject.transform.right/6;
+            firstPosition = path.gameObject.transform.position + path.gameObject.transform.right/3;
+            secondPostion = path.gameObject.transform.position - path.gameObject.transform.right/3;
             finalPosition = path.gameObject.transform.position - path.gameObject.transform.right/2;
         }
-        finalPosition.y = path.transform.position.y + transform.lossyScale.y/2;
-        firstPosition.y = secondPostion.y = path.transform.position.y + path.transform.lossyScale.y/4 + transform.lossyScale.y/2; 
+        finalPosition.y = startHeight;;
+        firstPosition.y = secondPostion.y = startHeight + path.transform.lossyScale.y/4;
         drawCircle(firstPosition,Color.red);
         drawCircle(secondPostion,Color.red);
         drawCircle(finalPosition,Color.red);
@@ -148,8 +163,13 @@ public class playerMovement : MonoBehaviour
                     MoveTurn(other.gameObject);
                     break;
             }
-            //other.GetComponent<BoxCollider>().enabled = false;
-            //drawCircle(other.gameObject.transform.position, Color.red);
+        }
+
+        if(other.GetComponent<Collectable>()){
+            Instantiate(bloom, other.transform.position, other.transform.rotation);
+            other.gameObject.GetComponent<Collectable>().Collect();
+            score++;
+            collectables.Add(gameObject);
         }
     }
 
