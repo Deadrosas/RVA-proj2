@@ -5,7 +5,7 @@ using UnityEditor;
 
 public class playerMovement : MonoBehaviour
 {
-    bool started = false;
+    public bool started = false;
     public float SPEED = 100f;
     public float ROTATION_SPEED = 0.9f;
     bool isRotating = false;
@@ -38,6 +38,7 @@ public class playerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(finalPositions.Count);
         if(Input.GetKeyDown(KeyCode.Space)){
             started = !started;
             GetComponent<SphereCollider>().enabled = !GetComponent<SphereCollider>().enabled;
@@ -54,6 +55,8 @@ public class playerMovement : MonoBehaviour
         }
 
         if(finalPositions.Count > 0){
+            Debug.Log("DISTANCE");
+            Debug.Log(Vector3.Distance(transform.position, finalPositions.Peek()));
             if(started && Vector3.Distance(transform.position, finalPositions.Peek()) > 0.001f){
                 animator.SetBool("walking", true);
                 transform.position = Vector3.MoveTowards(transform.position, finalPositions.Peek(), SPEED*Time.deltaTime);
@@ -145,21 +148,25 @@ public class playerMovement : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Path otherPath = other.GetComponent<Path>();
+        MyPath otherPath = other.GetComponent<MyPath>();
 
-        if(otherPath && started){
+        Debug.Log("TRIGGERED");
+
+        if(otherPath){
+            Debug.Log("TRIGGERED PATH");
             switch(otherPath.path){
-                case Path.PATHS.START:
+                case MyPath.PATHS.START:
+                    Debug.Log("START CASE");
                     MoveStart(other.gameObject);
                     start = other.gameObject;
                     break;
-                case Path.PATHS.FORWARD:
+                case MyPath.PATHS.FORWARD:
                     MoveForward(other.gameObject);
                     break;
-                case Path.PATHS.BRIDGE:
+                case MyPath.PATHS.BRIDGE:
                     MoveBridge(other.gameObject);
                     break;
-                case Path.PATHS.TURN:
+                case MyPath.PATHS.TURN:
                     MoveTurn(other.gameObject);
                     break;
             }

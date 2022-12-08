@@ -5,12 +5,12 @@ using UnityEngine;
 public class PieceAnchor : MonoBehaviour
 {
 	public readonly object connectedLock = new object();
-	Path selfPath;
+	MyPath selfPath;
 
 	List<GameObject> connected = new List<GameObject>();
 
 	void Awake(){
-		selfPath = GetComponentInParent<Path>();
+		selfPath = GetComponentInParent<MyPath>();
 	}
 
 	void OnTriggerStay(Collider col){
@@ -21,7 +21,7 @@ public class PieceAnchor : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Path otherPath = other.GetComponent<Path>();
+        MyPath otherPath = other.GetComponent<MyPath>();
 	
 		if(otherPath){
 			lock(connectedLock){

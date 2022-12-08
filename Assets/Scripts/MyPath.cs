@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 
-public class Path : MonoBehaviour
+public class MyPath : MonoBehaviour
 {
     public enum PATHS {NONE, START , FORWARD, TURN, BRIDGE, END};
 

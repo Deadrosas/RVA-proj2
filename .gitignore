@@ -12,6 +12,7 @@
 
 # Ignore Packages - need to manually install vuforia
 /Packages/
+**/SamplesResources/
 
 
 # MemoryCaptures can get excessive in size.
