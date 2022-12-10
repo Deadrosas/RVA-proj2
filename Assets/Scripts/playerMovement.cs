@@ -25,6 +25,9 @@ public class playerMovement : MonoBehaviour
 
     int score = 0;
 
+    bool finished = false;
+    public GameObject canvas;
+
     HashSet<GameObject> collectables = new HashSet<GameObject>();
 
     void Start(){
@@ -63,6 +66,11 @@ public class playerMovement : MonoBehaviour
             }
             else{
                 finalPositions.Dequeue();
+                if(finished){
+                    canvas.SetActive(true);
+                    canvas.GetComponent<WinUI>().setScore(score);
+                    started = false;
+                }
             } 
         }else
             animator.SetBool("walking", false);
@@ -99,6 +107,7 @@ public class playerMovement : MonoBehaviour
     void MoveTurn(GameObject path){
         Vector3 finalPosition;
         Vector3 middlePosition = new Vector3(path.transform.position.x, transform.position.y, path.transform.position.z) + (path.transform.right - path.transform.forward)/5;
+        middlePosition.y = startHeight;
         float angle = Vector3.Angle(path.transform.forward, transform.forward);
         if(angle > 180-45 && angle < 180+45){
             finalPosition = path.gameObject.transform.position + path.transform.right/2;
@@ -123,17 +132,19 @@ public class playerMovement : MonoBehaviour
         Vector3 firstPosition, secondPostion, finalPosition;
         Debug.Log(Vector3.Angle(path.transform.forward, transform.forward));
         if(Vector3.Angle(path.transform.forward, transform.forward) < 45 && Vector3.Angle(path.transform.forward, transform.forward) > 135){
-            Debug.Log("WRONG CONNECTION IN FORWARD "+Vector3.Angle(path.transform.forward, transform.forward));
+            Debug.Log("WRONG CONNECTION IN BRIDGE "+Vector3.Angle(path.transform.forward, transform.forward));
             return;
         }
-        if(Vector3.Angle(path.transform.forward, transform.forward) < 45){
-            firstPosition = path.gameObject.transform.position - path.gameObject.transform.right/3;
-            secondPostion = path.gameObject.transform.position + path.gameObject.transform.right/3;
+        if(Vector3.SignedAngle(path.transform.forward, transform.forward, path.transform.up) < 0){
+            Debug.Log(">>>>>>>>>>>>>>>A");
+            firstPosition = path.gameObject.transform.position - path.gameObject.transform.right/6;
+            secondPostion = path.gameObject.transform.position + path.gameObject.transform.right/6;
             finalPosition = path.gameObject.transform.position + path.gameObject.transform.right/2;
         }
         else{
-            firstPosition = path.gameObject.transform.position + path.gameObject.transform.right/3;
-            secondPostion = path.gameObject.transform.position - path.gameObject.transform.right/3;
+            Debug.Log(">>>>>>>>>>>>>>B");
+            firstPosition = path.gameObject.transform.position + path.gameObject.transform.right/6;
+            secondPostion = path.gameObject.transform.position - path.gameObject.transform.right/6;
             finalPosition = path.gameObject.transform.position - path.gameObject.transform.right/2;
         }
         finalPosition.y = startHeight;;
@@ -144,6 +155,11 @@ public class playerMovement : MonoBehaviour
         finalPositions.Enqueue(firstPosition);
         finalPositions.Enqueue(secondPostion);
         finalPositions.Enqueue(finalPosition);
+    }
+
+    void MoveEnd(GameObject path){
+        finalPositions.Enqueue(path.transform.position + transform.forward/3);
+        finished = true; 
     }
 
     void OnTriggerEnter(Collider other)
@@ -168,6 +184,10 @@ public class playerMovement : MonoBehaviour
                     break;
                 case MyPath.PATHS.TURN:
                     MoveTurn(other.gameObject);
+                    break;
+                case MyPath.PATHS.END:
+                case MyPath.PATHS.ALLSIDES:
+                    MoveEnd(other.gameObject);
                     break;
             }
         }

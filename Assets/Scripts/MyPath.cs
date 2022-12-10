@@ -6,7 +6,7 @@ using UnityEditor;
 
 public class MyPath : MonoBehaviour
 {
-    public enum PATHS {NONE, START , FORWARD, TURN, BRIDGE, END};
+    public enum PATHS {NONE, START , FORWARD, TURN, BRIDGE, END, ALLSIDES};
 
     public PATHS path;
 
@@ -46,6 +46,9 @@ public class MyPath : MonoBehaviour
                 break;
             case PATHS.BRIDGE:
                 setPath("Assets/kenney_natureKit_2.1/Models/OBJ format/bridge_woodRoundNarrow.prefab");
+                break;
+            case PATHS.ALLSIDES:
+                setPath("Assets/kenney_natureKit_2.1/Models/OBJ format/ground_pathCross.obj");
                 break;
         }
     }
