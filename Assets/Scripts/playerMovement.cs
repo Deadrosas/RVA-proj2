@@ -158,7 +158,7 @@ public class playerMovement : MonoBehaviour
     }
 
     void MoveEnd(GameObject path){
-        finalPositions.Enqueue(path.transform.position + transform.forward/3);
+        finalPositions.Enqueue(path.transform.position);
         finished = true; 
     }
 

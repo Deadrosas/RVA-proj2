@@ -12,6 +12,7 @@ public class MyPath : MonoBehaviour
 
     public List<GameObject> connected = new List<GameObject>();
 
+
     void setPath(string path){
         UnityEditor.EditorApplication.delayCall+=()=>
         {   
@@ -36,19 +37,19 @@ public class MyPath : MonoBehaviour
         switch(path){
             case PATHS.START:
             case PATHS.END: 
-                setPath("Assets/kenney_natureKit_2.1/Models/OBJ format/ground_pathEndClosed.obj");
+                // setPath("Assets/kenney_natureKit_2.1/Models/OBJ format/ground_pathEndClosed.obj");
                 break;
             case PATHS.FORWARD:
-                setPath("Assets/kenney_natureKit_2.1/Models/OBJ format/ground_pathStraight.obj");
+                // setPath("Assets/kenney_natureKit_2.1/Models/OBJ format/ground_pathStraight.obj");
                 break;
             case PATHS.TURN:
-                setPath("Assets/kenney_natureKit_2.1/Models/OBJ format/ground_pathBendBank.obj");
+                // setPath("Assets/kenney_natureKit_2.1/Models/OBJ format/ground_pathBendBank.obj");
                 break;
             case PATHS.BRIDGE:
-                setPath("Assets/kenney_natureKit_2.1/Models/OBJ format/bridge_woodRoundNarrow.prefab");
+                // setPath("Assets/kenney_natureKit_2.1/Models/OBJ format/bridge_woodRoundNarrow.prefab");
                 break;
             case PATHS.ALLSIDES:
-                setPath("Assets/kenney_natureKit_2.1/Models/OBJ format/ground_pathCross.obj");
+                // setPath("Assets/kenney_natureKit_2.1/Models/OBJ format/ground_pathCross.obj");
                 break;
         }
     }

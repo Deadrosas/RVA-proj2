@@ -98,7 +98,8 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 35ada3fbc7f10794caf88e5dbfc23d55,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -678,7 +679,7 @@ GameObject:
   - component: {fileID: 255572276}
   - component: {fileID: 255572275}
   - component: {fileID: 255572274}
-  - component: {fileID: 255572273}
+  - component: {fileID: 255572277}
   m_Layer: 0
   m_Name: Start
   m_TagString: Untagged
@@ -686,25 +687,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &255572273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 255572272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1778676317, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mObserverBehaviour: {fileID: 255572275}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: marker1
-  mDatasetName: 
-  mCastedBehaviour: {fileID: 255572275}
-  mMeshFilter: {fileID: 0}
-  mMeshRenderer: {fileID: 0}
 --- !u!114 &255572274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -745,7 +727,19 @@ MonoBehaviour:
     m_RotationOrder: 4
   OnTargetFound:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2127252261}
+        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnTargetLost:
     m_PersistentCalls:
       m_Calls: []
@@ -774,7 +768,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 255572273}
+  mPreview: {fileID: 255572277}
 --- !u!4 &255572276
 Transform:
   m_ObjectHideFlags: 0
@@ -791,6 +785,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &255572277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255572272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1778676317, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mObserverBehaviour: {fileID: 255572275}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: marker1
+  mDatasetName: 
+  mCastedBehaviour: {fileID: 255572275}
+  mMeshFilter: {fileID: 0}
+  mMeshRenderer: {fileID: 0}
 --- !u!1001 &281037450
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1311,8 +1324,8 @@ MonoBehaviour:
   m_Script: {fileID: -1826476478, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mWorldCenterMode: 2
-  mWorldCenter: {fileID: 0}
+  mWorldCenterMode: 0
+  mWorldCenter: {fileID: 255572275}
 --- !u!81 &412069631
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1582,7 +1595,7 @@ GameObject:
   - component: {fileID: 453070744}
   - component: {fileID: 453070743}
   - component: {fileID: 453070742}
-  - component: {fileID: 453070741}
+  - component: {fileID: 453070745}
   m_Layer: 0
   m_Name: ImageTarget (3)
   m_TagString: Untagged
@@ -1590,25 +1603,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &453070741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 453070740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1778676317, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mObserverBehaviour: {fileID: 453070743}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: marker4
-  mDatasetName: 
-  mCastedBehaviour: {fileID: 453070743}
-  mMeshFilter: {fileID: 0}
-  mMeshRenderer: {fileID: 0}
 --- !u!114 &453070742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1621,7 +1615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886328de6a5c14cbb85854fdf1a5085b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StatusFilter: 1
+  StatusFilter: 0
   UsePoseSmoothing: 0
   AnimationCurve:
     serializedVersion: 2
@@ -1678,7 +1672,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 453070741}
+  mPreview: {fileID: 453070745}
 --- !u!4 &453070744
 Transform:
   m_ObjectHideFlags: 0
@@ -1695,6 +1689,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &453070745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453070740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1778676317, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mObserverBehaviour: {fileID: 453070743}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: marker4
+  mDatasetName: 
+  mCastedBehaviour: {fileID: 453070743}
+  mMeshFilter: {fileID: 0}
+  mMeshRenderer: {fileID: 0}
 --- !u!1001 &468458879
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1802,7 +1815,7 @@ Transform:
   - {fileID: 398349227}
   - {fileID: 524924408}
   m_Father: {fileID: 1927598277}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &493205505
 PrefabInstance:
@@ -5043,7 +5056,7 @@ GameObject:
   - component: {fileID: 1527583442}
   - component: {fileID: 1527583441}
   - component: {fileID: 1527583440}
-  - component: {fileID: 1527583439}
+  - component: {fileID: 1527583443}
   m_Layer: 0
   m_Name: L
   m_TagString: Untagged
@@ -5051,25 +5064,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1527583439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1527583438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1778676317, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mObserverBehaviour: {fileID: 1527583441}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: marker2
-  mDatasetName: 
-  mCastedBehaviour: {fileID: 1527583441}
-  mMeshFilter: {fileID: 0}
-  mMeshRenderer: {fileID: 0}
 --- !u!114 &1527583440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5082,7 +5076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886328de6a5c14cbb85854fdf1a5085b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StatusFilter: 1
+  StatusFilter: 0
   UsePoseSmoothing: 0
   AnimationCurve:
     serializedVersion: 2
@@ -5139,7 +5133,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 1527583439}
+  mPreview: {fileID: 1527583443}
 --- !u!4 &1527583442
 Transform:
   m_ObjectHideFlags: 0
@@ -5156,6 +5150,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1527583443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527583438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1778676317, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mObserverBehaviour: {fileID: 1527583441}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: marker2
+  mDatasetName: 
+  mCastedBehaviour: {fileID: 1527583441}
+  mMeshFilter: {fileID: 0}
+  mMeshRenderer: {fileID: 0}
 --- !u!1001 &1529541034
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5659,7 +5672,7 @@ GameObject:
   - component: {fileID: 1634088313}
   - component: {fileID: 1634088312}
   - component: {fileID: 1634088311}
-  - component: {fileID: 1634088310}
+  - component: {fileID: 1634088314}
   m_Layer: 0
   m_Name: ImageTarget
   m_TagString: Untagged
@@ -5667,25 +5680,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1634088310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1634088309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1778676317, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mObserverBehaviour: {fileID: 1634088312}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: marker3
-  mDatasetName: 
-  mCastedBehaviour: {fileID: 1634088312}
-  mMeshFilter: {fileID: 0}
-  mMeshRenderer: {fileID: 0}
 --- !u!114 &1634088311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5698,7 +5692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886328de6a5c14cbb85854fdf1a5085b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StatusFilter: 1
+  StatusFilter: 0
   UsePoseSmoothing: 0
   AnimationCurve:
     serializedVersion: 2
@@ -5755,7 +5749,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 1634088310}
+  mPreview: {fileID: 1634088314}
 --- !u!4 &1634088313
 Transform:
   m_ObjectHideFlags: 0
@@ -5772,6 +5766,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1634088314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634088309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1778676317, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mObserverBehaviour: {fileID: 1634088312}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: marker3
+  mDatasetName: 
+  mCastedBehaviour: {fileID: 1634088312}
+  mMeshFilter: {fileID: 0}
+  mMeshRenderer: {fileID: 0}
 --- !u!1 &1637399857
 GameObject:
   m_ObjectHideFlags: 0
@@ -6933,7 +6946,7 @@ GameObject:
   - component: {fileID: 1927598277}
   - component: {fileID: 1927598276}
   - component: {fileID: 1927598275}
-  - component: {fileID: 1927598274}
+  - component: {fileID: 1927598278}
   m_Layer: 0
   m_Name: ImageTarget (4)
   m_TagString: Untagged
@@ -6941,25 +6954,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1927598274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1927598273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1778676317, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mObserverBehaviour: {fileID: 1927598276}
-  mHiddenRoot: {fileID: 0}
-  mTargetName: Marker5
-  mDatasetName: 
-  mCastedBehaviour: {fileID: 1927598276}
-  mMeshFilter: {fileID: 0}
-  mMeshRenderer: {fileID: 0}
 --- !u!114 &1927598275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6972,7 +6966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886328de6a5c14cbb85854fdf1a5085b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StatusFilter: 1
+  StatusFilter: 0
   UsePoseSmoothing: 0
   AnimationCurve:
     serializedVersion: 2
@@ -7029,7 +7023,7 @@ MonoBehaviour:
   mMotionHint: 1
   mTrackingOptimization: 0
   mTrackingOptimizationNeedsUpgrade: 0
-  mPreview: {fileID: 1927598274}
+  mPreview: {fileID: 1927598278}
 --- !u!4 &1927598277
 Transform:
   m_ObjectHideFlags: 0
@@ -7046,6 +7040,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1927598278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927598273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1778676317, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mObserverBehaviour: {fileID: 1927598276}
+  mHiddenRoot: {fileID: 0}
+  mTargetName: Marker5
+  mDatasetName: 
+  mCastedBehaviour: {fileID: 1927598276}
+  mMeshFilter: {fileID: 0}
+  mMeshRenderer: {fileID: 0}
 --- !u!4 &1930346245 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6135142819285224962, guid: 8c22178952003043cace7a0b1b175641,
@@ -7537,3 +7550,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5d9a065bc4532588b0c5949c3a392b4, type: 3}
+--- !u!135 &2127252261 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 1656561675, guid: c5d9a065bc4532588b0c5949c3a392b4,
+    type: 3}
+  m_PrefabInstance: {fileID: 2127252260}
+  m_PrefabAsset: {fileID: 0}
