@@ -7,44 +7,30 @@ using UnityEditor;
 public class MarkerPath : MonoBehaviour
 {
 
-    public GameObject reference = null;
+    float positionResolution = 5;
+    float rotationResolution = 0.02f;
+    float t = 0;
 
     void Update(){
-    
-        if(reference != null && reference.activeSelf){
-            //transform.Translate(0,-transform.position.y,0);
-            // transform.Rotate(0,0,0);
-        }
-    }
+        t += Time.deltaTime;
 
-    public void OnDetect(){
-        MarkerManager mm = Camera.main.GetComponent<MarkerManager>();
-        bool isStart = false;
-        foreach(MyPath path in GetComponentsInChildren<MyPath>()){
-            if(path.path == MyPath.PATHS.START){
-                isStart = true;
-                break;  
-            }
+        if(t > 0.5){
+            t = 0;
+            return; 
         }
-        if(isStart)
-            mm.start = transform.gameObject;
-        else{
-            if(mm.start != null){
-                reference = mm.start;   
-            }
-        }
-    }
 
-    public void OnLose(){
-        MarkerManager mm = Camera.main.GetComponent<MarkerManager>();
-        bool isStart = false;
-        foreach(MyPath path in GetComponentsInChildren<MyPath>()){
-            if(path.path == MyPath.PATHS.START){
-                isStart = true;
-                break;  
-            }
-        }
-        if(isStart)
-            mm.start = null;
+        if(transform.eulerAngles.x >= 5)
+            transform.Rotate(-transform.eulerAngles.x,0,0);
+        if(transform.eulerAngles.z >= 5)
+            transform.Rotate(0,0,-transform.eulerAngles.z);
+        //transform.Translate(0,-transform.position.y,0);
+
+        Vector3 rot = new Vector3(transform.eulerAngles.x, Mathf.Round(transform.eulerAngles.y*rotationResolution)/rotationResolution, transform.eulerAngles.z);
+
+        transform.eulerAngles = rot;
+
+        Vector3 pos = new Vector3(Mathf.Round(transform.position.x*positionResolution)/positionResolution,0,Mathf.Round(transform.position.z*positionResolution)/positionResolution);
+        transform.position = pos;
+
     }
 }
