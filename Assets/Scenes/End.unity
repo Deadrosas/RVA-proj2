@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44742817, g: 0.49737388, b: 0.575273, a: 1}
+  m_IndirectSpecularColor: {r: 0.44485894, g: 0.49411303, b: 0.5726784, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -902,7 +902,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Thank you for Plating
+  m_text: Thank you for Playing
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e805b59a45c1cc5348e452fa53a51524, type: 2}
   m_sharedMaterial: {fileID: 3510647867617639407, guid: e805b59a45c1cc5348e452fa53a51524,
