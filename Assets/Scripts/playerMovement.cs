@@ -35,7 +35,8 @@ public class playerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         finalRotation = transform.forward;
 
-        bloom = PrefabUtility.LoadPrefabContents("Assets/Prefab/Bloom.prefab");
+        bloom = Resources.Load("Bloom") as GameObject;
+        // bloom = PrefabUtility.LoadPrefabContents("Assets/Prefab/Bloom.prefab");
     }
 
     // Update is called once per frame

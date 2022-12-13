@@ -12,6 +12,7 @@ public class WinUI : MonoBehaviour
 
     public void NextScene(string name){
         SceneManager.LoadScene(name);
+        Debug.Log("Next Scene");
     }
 
     IEnumerator setScoreP(int s){

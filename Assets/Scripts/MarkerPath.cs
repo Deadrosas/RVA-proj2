@@ -12,25 +12,26 @@ public class MarkerPath : MonoBehaviour
     float t = 0;
 
     void Update(){
-        t += Time.deltaTime;
+        // t += Time.deltaTime;
 
-        if(t > 0.5){
-            t = 0;
-            return; 
-        }
+        // if(t < 0.5){
+        //     return; 
+        // }
 
-        if(transform.eulerAngles.x >= 5)
-            transform.Rotate(-transform.eulerAngles.x,0,0);
-        if(transform.eulerAngles.z >= 5)
-            transform.Rotate(0,0,-transform.eulerAngles.z);
-        //transform.Translate(0,-transform.position.y,0);
+        // if(transform.eulerAngles.x >= 5)
+        //     transform.Rotate(-transform.eulerAngles.x,0,0);
+        // if(transform.eulerAngles.z >= 5)
+        //     transform.Rotate(0,0,-transform.eulerAngles.z);
 
-        Vector3 rot = new Vector3(transform.eulerAngles.x, Mathf.Round(transform.eulerAngles.y*rotationResolution)/rotationResolution, transform.eulerAngles.z);
+        // transform.Translate(0,-transform.position.y,0);
 
-        transform.eulerAngles = rot;
+        // // Vector3 rot = new Vector3(transform.eulerAngles.x, Mathf.Round(transform.eulerAngles.y*rotationResolution)/rotationResolution, transform.eulerAngles.z);
 
-        Vector3 pos = new Vector3(Mathf.Round(transform.position.x*positionResolution)/positionResolution,0,Mathf.Round(transform.position.z*positionResolution)/positionResolution);
-        transform.position = pos;
+        // // transform.eulerAngles = rot;
 
+        // // Vector3 pos = new Vector3(Mathf.Round(transform.position.x*positionResolution)/positionResolution,0,Mathf.Round(transform.position.z*positionResolution)/positionResolution);
+        // // transform.position = pos;
+
+        // t = 0;
     }
 }

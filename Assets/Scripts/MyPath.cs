@@ -14,17 +14,17 @@ public class MyPath : MonoBehaviour
 
 
     void setPath(string path){
-        UnityEditor.EditorApplication.delayCall+=()=>
-        {   
-            if(transform.Find("Piece"))DestroyImmediate(transform.Find("Piece").gameObject);
+        // UnityEditor.EditorApplication.delayCall+=()=>
+        // {   
+        //     if(transform.Find("Piece"))DestroyImmediate(transform.Find("Piece").gameObject);
             
-            GameObject obj = Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(path));
-            obj.name = "Piece";
-            obj.transform.position = transform.position;
-            obj.transform.rotation = transform.rotation;
-            obj.transform.SetParent(transform);
-            if(!obj.transform.parent) DestroyImmediate(obj); 
-        }; 
+        //     GameObject obj = Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(path));
+        //     obj.name = "Piece";
+        //     obj.transform.position = transform.position;
+        //     obj.transform.rotation = transform.rotation;
+        //     obj.transform.SetParent(transform);
+        //     if(!obj.transform.parent) DestroyImmediate(obj); 
+        // }; 
     }
 
     void Update(){
